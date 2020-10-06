@@ -1,0 +1,4 @@
+repository "pong@ict_games@cloud"
+  path "/"
+    br "/main"
+    co "/main"

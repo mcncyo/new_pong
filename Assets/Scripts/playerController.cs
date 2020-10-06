@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class playerController : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
 
     //speed of player
     public float speed = 10;
 
-    //bounds of player
-    public float topBound = 4.5F;
-    public float BottomBound = -4.5F;
+	//bounds of player
+	public float topBound = 4.5F;
+	public float bottomBound = -4.5F;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +30,13 @@ public class playerController : MonoBehaviour
             Time.timeScale = 0;
         }
 
+        // if the esc key is press exit the game
+        if (Input.GetKey("escape"))
+        {
+            Application.Quit();
+        }
+
+
     }
 
     void FixedUpdate()
@@ -38,18 +45,13 @@ public class playerController : MonoBehaviour
         float movementSpeedY = speed * Input.GetAxis("Vertical") * Time.deltaTime;
         transform.Translate(0, movementSpeedY, 0);
 
-        //set bounds of player
-        if (transform.position.y > topBound)
-        {
-            transform.position = new Vector3(transform.position.x, topBound, 0);
-        } else if (transform.position.y < BottomBound)
-        {
-            transform.position = new Vector3(transform.position.x, BottomBound, 0);
-        }
-    }
-    
-        
- 
+		//set bounds of player
+		if(transform.position.y > topBound){
+			transform.position = new Vector3(transform.position.x, topBound, 0);
+		} else if(transform.position.y < bottomBound){
+			transform.position = new Vector3(transform.position.x, bottomBound, 0);
+		}
 
 
+	}
 }

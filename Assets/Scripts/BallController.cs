@@ -1,6 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using System.Collections;
 
 public class BallController : MonoBehaviour
 {
@@ -46,6 +45,42 @@ public class BallController : MonoBehaviour
         //moving ball in inital direction and adding speed
         rig2D.velocity = (spawnDir * speed);
     }
+
+
+
+	void OnCollisionEnter2D(Collision2D col) {
+        
+        //tag check
+        if (col.gameObject.tag == "Enemy")
+        {
+            //calvulate angle
+            float y = launchAngle(transform.position, col.transform.position, col.collider.bounds.size.y);
+
+            //Set angle and speed
+            Vector2 d = new Vector2(1, y).normalized;
+            rig2D.velocity = d * speed * 1.5F;
+
+        }
+
+        if (col.gameObject.tag == "Player")
+        {
+            //calculate angle
+            float y = launchAngle(transform.position, col.transform.position, col.collider.bounds.size.y);
+
+            //set angle and speed
+            Vector2 d = new Vector2(-1, y).normalized;
+            rig2D.velocity = d * speed * 1.5F;
+
+        }
+
+        //calculates the angle the ball hits the paddle at
+        float launchAngle(Vector2 ball, Vector2 paddle, float paddleHeight)
+        {
+            return (ball.y - paddle.y) / paddleHeight;
+        }
+
+	
+
+	
+	}
 }
-
-

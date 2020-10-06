@@ -1,6 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using System.Collections;
 
 public class BallSpawnerController : MonoBehaviour
 {
@@ -17,6 +16,13 @@ public class BallSpawnerController : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
+		
+		
+		
+
+
+
+
 		if (transform.childCount == 0)
 		{
 			GameObject ballClone;
